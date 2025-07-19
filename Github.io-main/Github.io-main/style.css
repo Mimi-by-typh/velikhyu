@@ -1,0 +1,1118 @@
+/* Современные CSS переменные */
+:root {
+    --blood-red: #FF0000;
+    --dark-red: #8B0000;
+    --pure-black: #000000;
+    --coal: #1A1A1A;
+    --ash: #333333;
+    --bone: #F0F0F0;
+    --neon-red: #FF1744;
+    --fire-orange: #FF5722;
+    --gold: #FFD700;
+    --shadow-red: rgba(255, 0, 0, 0.3);
+    --gradient-dark: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+    --gradient-red: linear-gradient(135deg, #FF0000 0%, #8B0000 50%, #FF0000 100%);
+}
+
+/* Базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--gradient-dark);
+    color: var(--bone);
+    font-family: 'Orbitron', 'Arial', sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--coal);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--blood-red);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-red);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(30px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes slideInLeft {
+    from { 
+        opacity: 0; 
+        transform: translateX(-50px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+@keyframes slideInRight {
+    from { 
+        opacity: 0; 
+        transform: translateX(50px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateX(0); 
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { 
+        transform: scale(1); 
+        box-shadow: 0 0 20px var(--shadow-red);
+    }
+    50% { 
+        transform: scale(1.05); 
+        box-shadow: 0 0 30px var(--neon-red);
+    }
+}
+
+@keyframes glow {
+    0%, 100% { 
+        text-shadow: 0 0 5px var(--blood-red), 0 0 10px var(--blood-red);
+    }
+    50% { 
+        text-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red), 0 0 30px var(--fire-orange);
+    }
+}
+
+@keyframes fire-flicker {
+    0%, 100% { 
+        color: var(--blood-red); 
+        text-shadow: 0 0 5px var(--blood-red); 
+    }
+    25% { 
+        color: var(--fire-orange); 
+        text-shadow: 0 0 10px var(--fire-orange); 
+    }
+    50% { 
+        color: var(--gold); 
+        text-shadow: 0 0 15px var(--gold); 
+    }
+    75% { 
+        color: var(--neon-red); 
+        text-shadow: 0 0 20px var(--neon-red); 
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Header */
+header {
+    background: var(--gradient-dark);
+    padding: 3rem 1rem;
+    text-align: center;
+    border-bottom: 3px solid var(--blood-red);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 2s ease-out;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 0, 0, 0.1) 50%, transparent 70%);
+    animation: float 6s ease-in-out infinite;
+}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--blood-red);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 1rem;
+    animation: glow 3s ease-in-out infinite;
+    position: relative;
+    z-index: 2;
+}
+
+.clan-tag {
+    display: block;
+    font-size: 1.8rem;
+    color: var(--bone);
+    letter-spacing: 5px;
+    margin-top: 1rem;
+    font-weight: 300;
+    animation: fadeIn 1s ease-out 0.5s both;
+    position: relative;
+    z-index: 2;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+    border-bottom: 2px solid var(--dark-red);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    animation: fadeIn 1s ease-out 1s both;
+}
+
+nav a {
+    color: var(--bone);
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    border: 2px solid var(--blood-red);
+    border-radius: 25px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    background: transparent;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-red);
+    transition: left 0.4s ease;
+    z-index: -1;
+}
+
+nav a:hover::before {
+    left: 0;
+}
+
+nav a:hover, nav a.active {
+    color: var(--bone);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px var(--shadow-red);
+    border-color: var(--neon-red);
+}
+
+/* Container */
+.container {
+    max-width: 1400px;
+    margin: 3rem auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+/* Clan Cards */
+.clan-card {
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--dark-red);
+    padding: 2rem;
+    border-radius: 15px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-out both;
+}
+
+.clan-card:nth-child(1) { animation-delay: 1.5s; }
+.clan-card:nth-child(2) { animation-delay: 2s; }
+.clan-card:nth-child(3) { animation-delay: 2.5s; }
+
+.clan-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-red);
+    border-radius: 17px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.clan-card:hover::before {
+    opacity: 1;
+}
+
+.clan-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 0, 0, 0.4);
+    border-color: var(--neon-red);
+}
+
+.clan-card h2 {
+    color: var(--blood-red);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--blood-red);
+    font-size: 1.8rem;
+    text-align: center;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.clan-card ul {
+    padding-left: 1.5rem;
+    list-style: none;
+}
+
+.clan-card li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.clan-card li::before {
+    content: "⚔";
+    color: var(--blood-red);
+    position: absolute;
+    left: 0;
+    font-size: 1.2rem;
+    animation: pulse 2s infinite;
+}
+
+.clan-card li:hover {
+    color: var(--neon-red);
+    transform: translateX(5px);
+}
+
+/* Footer */
+footer {
+    background: var(--gradient-dark);
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 2px solid var(--blood-red);
+    margin-top: 4rem;
+    animation: fadeIn 1s ease-out 3s both;
+}
+
+.telegram-link {
+    display: inline-block;
+    background-color: var(--dark-red);
+    color: var(--bone);
+    padding: 0.8rem 2rem;
+    margin: 1rem 0;
+    border: none;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.telegram-link:hover {
+    background-color: var(--blood-red);
+    transform: scale(1.05);
+}
+
+.clan-motto {
+    font-style: italic;
+    color: var(--blood-red);
+    margin-top: 1rem;
+}
+
+/* Страница устава */
+.statute-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--dark-red);
+    border-radius: 15px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease-out 2.6s forwards;
+    backdrop-filter: blur(10px);
+}
+
+.statute-content {
+    white-space: pre-line;
+    line-height: 1.8;
+    padding: 1rem;
+    opacity: 0;
+    animation: textAppear 1.5s ease-out 3.0s forwards;
+    color: var(--bone);
+}
+
+/* Анимация текста */
+@keyframes textAppear {
+    from { opacity: 0; letter-spacing: 5px; }
+    to { opacity: 1; letter-spacing: normal; }
+}
+
+/* Страница членов клана */
+.members-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.member-card {
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--dark-red);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-out both;
+}
+
+.member-card:nth-child(1) { animation-delay: 1s; }
+.member-card:nth-child(2) { animation-delay: 1.5s; }
+.member-card:nth-child(3) { animation-delay: 2s; }
+.member-card:nth-child(4) { animation-delay: 2.5s; }
+.member-card:nth-child(5) { animation-delay: 3s; }
+
+.member-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-red);
+    border-radius: 17px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.member-card:hover::before {
+    opacity: 1;
+}
+
+.member-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 0, 0, 0.4);
+    border-color: var(--neon-red);
+}
+
+.member-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--ash);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid var(--blood-red);
+    transition: all 0.3s ease;
+}
+
+.member-avatar:hover {
+    border-color: var(--neon-red);
+    transform: scale(1.05);
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-name {
+    color: var(--blood-red);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.member-rank {
+    color: var(--bone);
+    background: var(--gradient-red);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--blood-red);
+}
+
+.member-info {
+    color: var(--bone);
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    line-height: 1.6;
+}
+
+.member-contacts {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.member-contacts a {
+    color: var(--bone);
+    background: var(--gradient-dark);
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    border: 1px solid var(--dark-red);
+    font-size: 1.2rem;
+}
+
+.member-contacts a:hover {
+    background: var(--gradient-red);
+    transform: scale(1.1);
+    border-color: var(--neon-red);
+}
+
+/* Страница архива */
+.archive-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--dark-red);
+    border-radius: 15px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeIn 1s ease-out 2.6s forwards;
+    backdrop-filter: blur(10px);
+}
+
+.archive-container h2 {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 2.8s forwards;
+    color: var(--blood-red);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+.archive-image {
+    max-width: 100%;
+    height: auto;
+    border: 2px solid var(--blood-red);
+    border-radius: 15px;
+    margin: 1rem 0;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+    opacity: 0;
+    transform: scale(0.95);
+    animation: scaleIn 0.8s ease-out 3.0s forwards;
+    transition: all 0.3s ease;
+}
+
+.archive-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+    border-color: var(--neon-red);
+}
+
+.image-description {
+    color: var(--bone);
+    margin-top: 1rem;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out 3.2s forwards;
+}
+
+/* Анимация плавного появления */
+@keyframes scaleIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Страница бомжей */
+.bomji-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.bomji-card {
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--dark-red);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-out both;
+}
+
+.bomji-card:nth-child(1) { animation-delay: 1s; }
+.bomji-card:nth-child(2) { animation-delay: 1.5s; }
+.bomji-card:nth-child(3) { animation-delay: 2s; }
+
+.bomji-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-red);
+    border-radius: 17px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.bomji-card:hover::before {
+    opacity: 1;
+}
+
+.bomji-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 0, 0, 0.4);
+    border-color: var(--neon-red);
+}
+
+.bomji-name {
+    color: var(--blood-red);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px dashed var(--blood-red);
+    padding-bottom: 0.5rem;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.bomji-info {
+    margin-bottom: 0.5rem;
+}
+
+.bomji-info p {
+    margin-bottom: 0.8rem;
+    color: var(--bone);
+    line-height: 1.6;
+}
+
+.bomji-info strong {
+    color: var(--blood-red);
+    font-weight: bold;
+}
+
+/* Страница достижений */
+.achievements-container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+}
+
+.achievement-card {
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--dark-red);
+    padding: 2rem;
+    border-radius: 15px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-out both;
+}
+
+.achievement-card:nth-child(1) { animation-delay: 1.5s; }
+.achievement-card:nth-child(2) { animation-delay: 2s; }
+.achievement-card:nth-child(3) { animation-delay: 2.5s; }
+.achievement-card:nth-child(4) { animation-delay: 3s; }
+.achievement-card:nth-child(5) { animation-delay: 3.5s; }
+.achievement-card:nth-child(6) { animation-delay: 4s; }
+
+.achievement-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-red);
+    border-radius: 17px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.achievement-card:hover::before {
+    opacity: 1;
+}
+
+.achievement-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 0, 0, 0.4);
+    border-color: var(--neon-red);
+}
+
+.achievement-card h2 {
+    color: var(--blood-red);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--blood-red);
+    font-size: 1.8rem;
+    text-align: center;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.achievement-icon {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+.achievement-description {
+    color: var(--bone);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.achievement-date {
+    color: var(--blood-red);
+    font-style: italic;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.achievement-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--dark-red);
+}
+
+.stat {
+    text-align: center;
+    color: var(--bone);
+}
+
+.stat-number {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--blood-red);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--bone);
+}
+
+/* Страница рейтинга */
+.rating-container {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 2rem;
+}
+
+.rating-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeIn 1s ease-out;
+}
+
+.rating-header h2 {
+    color: var(--blood-red);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.rating-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--dark-red);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-out both;
+}
+
+.stat-card:nth-child(1) { animation-delay: 1s; }
+.stat-card:nth-child(2) { animation-delay: 1.5s; }
+.stat-card:nth-child(3) { animation-delay: 2s; }
+.stat-card:nth-child(4) { animation-delay: 2.5s; }
+
+.stat-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: var(--gradient-red);
+    border-radius: 17px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(139, 0, 0, 0.4);
+    border-color: var(--neon-red);
+}
+
+.stat-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: pulse 2s infinite;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--blood-red);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--bone);
+    font-size: 1.1rem;
+}
+
+.rating-table {
+    background: rgba(26, 26, 26, 0.9);
+    border: 2px solid var(--dark-red);
+    border-radius: 15px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease-out 3s both;
+}
+
+.table-header {
+    background: var(--dark-red);
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.table-header h3 {
+    color: var(--bone);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.table-content {
+    padding: 2rem;
+}
+
+.rating-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid var(--dark-red);
+    transition: all 0.3s ease;
+}
+
+.rating-row:last-child {
+    border-bottom: none;
+}
+
+.rating-row:hover {
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.rating-row.top-3 {
+    background: rgba(255, 215, 0, 0.1);
+    border-left: 4px solid var(--gold);
+}
+
+.rank {
+    font-weight: bold;
+    color: var(--blood-red);
+    font-size: 1.2rem;
+}
+
+.clan-name {
+    color: var(--bone);
+    font-weight: bold;
+}
+
+.clan-tag {
+    color: var(--bone);
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+.score {
+    color: var(--blood-red);
+    font-weight: bold;
+}
+
+.members {
+    color: var(--bone);
+    text-align: center;
+}
+
+/* Музыкальный плеер */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(15px);
+    border: 2px solid var(--blood-red);
+    border-radius: 15px;
+    padding: 1.5rem;
+    width: 350px;
+    z-index: 10000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideInRight 1s ease-out;
+}
+
+.music-player h3 {
+    color: var(--blood-red);
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    animation: glow 2s ease-in-out infinite;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.player-controls button {
+    background: var(--blood-red);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.player-controls button:hover {
+    background: var(--neon-red);
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px var(--shadow-red);
+}
+
+.player-controls button:active {
+    transform: scale(0.95);
+}
+
+.playlist {
+    max-height: 200px;
+    overflow-y: auto;
+    border-top: 1px solid var(--dark-red);
+    padding-top: 1rem;
+}
+
+.playlist-item {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.playlist-item:hover {
+    background: rgba(255, 0, 0, 0.2);
+    border-left-color: var(--blood-red);
+    transform: translateX(5px);
+}
+
+.playlist-item.active {
+    background: rgba(255, 0, 0, 0.3);
+    border-left-color: var(--neon-red);
+    color: var(--neon-red);
+}
+
+.volume-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.volume-control input {
+    flex: 1;
+    height: 5px;
+    background: var(--coal);
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+}
+
+.volume-control input::-webkit-slider-thumb {
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: var(--blood-red);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.volume-control input::-webkit-slider-thumb:hover {
+    background: var(--neon-red);
+}
+
+/* Прогресс бар */
+.progress-container {
+    width: 100%;
+    height: 5px;
+    background: var(--coal);
+    border-radius: 3px;
+    margin: 1rem 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--gradient-red);
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+/* Время */
+.time-display {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--bone);
+    margin-top: 0.5rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    .clan-tag {
+        font-size: 1.4rem;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    nav a {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+    
+    .music-player {
+        width: 90%;
+        right: 5%;
+        bottom: 10px;
+    }
+}
+
+/* Дополнительные эффекты */
+.particle {
+    position: absolute;
+    background: var(--blood-red);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Кнопка скрытия плеера */
+.toggle-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--blood-red);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10001;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.toggle-player:hover {
+    background: var(--neon-red);
+    transform: scale(1.1);
+}
+
+.music-player.hidden {
+    transform: translateX(100%);
+    opacity: 0;
+}

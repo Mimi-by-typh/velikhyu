@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рейтинг | Великодушные #VLKD</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        .rating-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 2rem;
+        }
+        
+        .rating-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .rating-header h2 {
+            color: var(--blood-red);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        .rating-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            background: rgba(26, 26, 26, 0.9);
+            border: 2px solid var(--dark-red);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease-out both;
+        }
+        
+        .stat-card:nth-child(1) { animation-delay: 1s; }
+        .stat-card:nth-child(2) { animation-delay: 1.5s; }
+        .stat-card:nth-child(3) { animation-delay: 2s; }
+        .stat-card:nth-child(4) { animation-delay: 2.5s; }
+        
+        .stat-card::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-red);
+            border-radius: 17px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(139, 0, 0, 0.4);
+            border-color: var(--neon-red);
+        }
+        
+        .stat-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--blood-red);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--bone);
+            font-size: 1.1rem;
+        }
+        
+        .rating-table {
+            background: rgba(26, 26, 26, 0.9);
+            border: 2px solid var(--dark-red);
+            border-radius: 15px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            animation: fadeIn 1s ease-out 3s both;
+        }
+        
+        .table-header {
+            background: var(--dark-red);
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .table-header h3 {
+            color: var(--bone);
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .table-content {
+            padding: 2rem;
+        }
+        
+        .rating-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid var(--dark-red);
+            transition: all 0.3s ease;
+        }
+        
+        .rating-row:last-child {
+            border-bottom: none;
+        }
+        
+        .rating-row:hover {
+            background: rgba(255, 0, 0, 0.1);
+        }
+        
+        .rating-row.top-3 {
+            background: rgba(255, 215, 0, 0.1);
+            border-left: 4px solid var(--gold);
+        }
+        
+        .rank {
+            font-weight: bold;
+            color: var(--blood-red);
+            font-size: 1.2rem;
+        }
+        
+        .clan-name {
+            color: var(--bone);
+            font-weight: bold;
+        }
+        
+        .clan-tag {
+            color: var(--bone);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .score {
+            color: var(--blood-red);
+            font-weight: bold;
+        }
+        
+        .members {
+            color: var(--bone);
+            text-align: center;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--coal);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-red);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>РЕЙТИНГ КЛАНОВ</h1>
+        <span class="clan-tag">Великодушные #VLKD</span>
+    </header>
+    
+    <nav>
+        <a href="index.html">Главная🏠</a>
+        <a href="ystav.html">Устав🗽</a>
+        <a href="chleny.html">Члены👤</a>
+        <a href="pravila.html">Правила🗒</a>
+        <a href="win.html">Достижения🏆</a>
+        <a href="rate.html" class="active">Рейтинг📈</a>
+        <a href="archiv.html">Архив🗂</a>
+        <a href="bomji.html">Бомжи для клана🤮</a>
+    </nav>
+    
+    <div class="rating-container">
+        <div class="rating-header">
+            <h2>Текущий Рейтинг Кланов</h2>
+            <p>Обновляется каждую неделю</p>
+        </div>
+        
+        <div class="rating-stats">
+            <div class="stat-card">
+                <div class="stat-icon">🏆</div>
+                <div class="stat-number">10</div>
+                <div class="stat-label">Место в рейтинге</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">⚔️</div>
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Процент побед</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Активных членов</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-number">4.8</div>
+                <div class="stat-label">Средний рейтинг</div>
+            </div>
+        </div>
+        
+        <div class="rating-table">
+            <div class="table-header">
+                <h3>Топ-20 Кланов</h3>
+            </div>
+            <div class="table-content">
+                <div class="rating-row top-3">
+                    <div class="rank">1</div>
+                    <div>
+                        <div class="clan-name">Легендарные Воины</div>
+                        <div class="clan-tag">#LEGEND</div>
+                    </div>
+                    <div class="score">9,850</div>
+                    <div class="members">150</div>
+                </div>
+                
+                <div class="rating-row top-3">
+                    <div class="rank">2</div>
+                    <div>
+                        <div class="clan-name">Темные Рыцари</div>
+                        <div class="clan-tag">#DARK</div>
+                    </div>
+                    <div class="score">9,720</div>
+                    <div class="members">120</div>
+                </div>
+                
+                <div class="rating-row top-3">
+                    <div class="rank">3</div>
+                    <div>
+                        <div class="clan-name">Стальные Сердца</div>
+                        <div class="clan-tag">#STEEL</div>
+                    </div>
+                    <div class="score">9,650</div>
+                    <div class="members">140</div>
+                </div>
+                
+                <div class="rating-row">
+                    <div class="rank">4</div>
+                    <div>
+                        <div class="clan-name">Огненные Драконы</div>
+                        <div class="clan-tag">#FIRE</div>
+                    </div>
+                    <div class="score">9,520</div>
+                    <div class="members">130</div>
+                </div>
+                
+                <div class="rating-row">
+                    <div class="rank">5</div>
+                    <div>
+                        <div class="clan-name">Ледяные Волки</div>
+                        <div class="clan-tag">#ICE</div>
+                    </div>
+                    <div class="score">9,480</div>
+                    <div class="members">110</div>
+                </div>
+                
+                <div class="rating-row">
+                    <div class="rank">6</div>
+                    <div>
+                        <div class="clan-name">Теневые Охотники</div>
+                        <div class="clan-tag">#SHADOW</div>
+                    </div>
+                    <div class="score">9,420</div>
+                    <div class="members">125</div>
+                </div>
+                
+                <div class="rating-row">
+                    <div class="rank">7</div>
+                    <div>
+                        <div class="clan-name">Кровавые Ангелы</div>
+                        <div class="clan-tag">#BLOOD</div>
+                    </div>
+                    <div class="score">9,380</div>
+                    <div class="members">135</div>
+                </div>
+                
+                <div class="rating-row">
+                    <div class="rank">8</div>
+                    <div>
+                        <div class="clan-name">Молот Войны</div>
+                        <div class="clan-tag">#HAMMER</div>
+                    </div>
+                    <div class="score">9,320</div>
+                    <div class="members">115</div>
+                </div>
+                
+                <div class="rating-row">
+                    <div class="rank">9</div>
+                    <div>
+                        <div class="clan-name">Бессмертные</div>
+                        <div class="clan-tag">#IMMORTAL</div>
+                    </div>
+                    <div class="score">9,280</div>
+                    <div class="members">145</div>
+                </div>
+                
+                <div class="rating-row" style="background: rgba(255, 0, 0, 0.2); border-left: 4px solid var(--blood-red);">
+                    <div class="rank">10</div>
+                    <div>
+                        <div class="clan-name">Великодушные</div>
+                        <div class="clan-tag">#VLKD</div>
+                    </div>
+                    <div class="score">9,250</div>
+                    <div class="members">100+</div>
+                </div>
+                
+                <div class="rating-row">
+                    <div class="rank">11</div>
+                    <div>
+                        <div class="clan-name">Громовые Молнии</div>
+                        <div class="clan-tag">#THUNDER</div>
+                    </div>
+                    <div class="score">9,200</div>
+                    <div class="members">105</div>
+                </div>
+                
+                <div class="rating-row">
+                    <div class="rank">12</div>
+                    <div>
+                        <div class="clan-name">Железные Кулаки</div>
+                        <div class="clan-tag">#IRON</div>
+                    </div>
+                    <div class="score">9,150</div>
+                    <div class="members">95</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <a href="https://t.me/Belikodyshnui_orig_Home/1572" class="telegram-link">
+            Присоединиться в Клан
+        </a>
+        <p class="clan-motto">"В единстве - наша сила, в чести - наше бессмертие"</p>
+        <p class="clan-motto">"@Belikodyshnui-лидер клана"</p>
+        <p>© 2024-2025 Великодушные #VLKD</p>
+    </footer>
+
+    <script src="Script.js"></script>
+    <script src="music.js"></script>
+</body>
+</html>
